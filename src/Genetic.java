@@ -60,9 +60,11 @@ public class Genetic {
 
     public int[] solve() {
         generateInitialTours();
+        int numGenerations = 1;
         do {
             generateNewTours();
-        } while (_toursCost_[0] < _fittestCost_);
+            numGenerations++;
+        } while (_toursCost_[0] < _fittestCost_ && numGenerations < _MAXGENERATIONS_);
         return _fittest_;
     }
 
