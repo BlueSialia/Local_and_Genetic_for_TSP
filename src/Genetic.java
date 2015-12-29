@@ -34,7 +34,7 @@ public class Genetic {
     public Genetic(double[][] tsp) {
         _COSTS_ = tsp;
         _TOWNS_ = _COSTS_.length;
-        _POPULATION_ = _TOWNS_*10;
+        _POPULATION_ = _TOWNS_*100;
         _tours_ = new int[_POPULATION_][_TOWNS_];
         _toursCost_ = new double[_POPULATION_];
         _MAXGENERATIONS_ = _DEFAULTMAXGENERATIONS_;
@@ -79,12 +79,12 @@ public class Genetic {
     }
 
     private void generateInitialTours() {
-        int[] basicTour = new int[_POPULATION_];
-        for (int i = 0; i < _POPULATION_; i++) {
+        int[] basicTour = new int[_TOWNS_];
+        for (int i = 0; i < _TOWNS_; i++) {
             basicTour[i] = i;
         }
         for (int i = 0; i < _POPULATION_; i++) {
-            _tours_[i] = shuffleArray(basicTour);
+            _tours_[i] = shuffleArray(basicTour).clone();
         }
         for (int i = 0; i < _POPULATION_; i++) {
             _toursCost_[i] = tourCost(_tours_[i]);
@@ -122,7 +122,7 @@ public class Genetic {
         int[] son = new int[_TOWNS_];
         Arrays.fill(son, -1);
         int subSize = _RANDOM_.nextInt(_TOWNS_) + 1,
-                startSubSize = _RANDOM_.nextInt(_TOWNS_-subSize);
+                startSubSize = (_TOWNS_-subSize == 0)? 0:_RANDOM_.nextInt(_TOWNS_-subSize);
         Integer[] partOfFirstParent = new Integer[subSize];
         for (int i = 0; i < subSize; i++) {
             partOfFirstParent[i] = firstParent[startSubSize + i];
@@ -140,8 +140,8 @@ public class Genetic {
     }
 
     private double tourCost(int[] tour) {
-        double length = _COSTS_[tour[_POPULATION_ - 1]][tour[0]];
-        for (int i = 0; i < _POPULATION_ - 1; i++) {
+        double length = _COSTS_[tour[_TOWNS_ - 1]][tour[0]];
+        for (int i = 0; i < _TOWNS_ - 1; i++) {
             length += _COSTS_[tour[i]][tour[i + 1]];
         }
         return length;
