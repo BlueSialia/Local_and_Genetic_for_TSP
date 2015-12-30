@@ -7,14 +7,6 @@ public class BitonicTour {
     private int[][] points = {{170, 85}, {166, 88}, {133, 73}, {140, 70}, {142, 55}, {126, 53}, {125, 60}, {119, 68}, {117, 74}, {99, 83}, {73, 79}, {72, 91}, {37, 94}, {6, 106}, {3, 97}, {21, 82}, {33, 67}, {4, 66}, {3, 42}, {27, 33}, {52, 41}, {57, 59}, {58, 66}, {88, 65}, {99, 67}, {95, 55}, {89, 55}, {83, 38}, {85, 25}, {104, 35}, {112, 37}, {112, 24}, {113, 13}, {125, 30}, {135, 32}, {147, 18}, {147, 36}, {154, 45}, {157, 54}, {158, 61}, {172, 82}, {174, 87}};
 
     public void solve() {
-//        for (int i = 0; i < points.length; i++) {
-//            for (int j = 0; j < points.length; j++) {
-//                System.out.printf("%.0f", straigthLine(points[i], points[j]));
-//                System.out.print("\t");
-//            }
-//            System.out.println();
-//        }
-
         for (int i = 0; i < points.length - 1; i++) {
             for (int j = i + 1; j < points.length; j++) {
                 if (points[j][0] < points[i][0]) {
@@ -41,8 +33,7 @@ public class BitonicTour {
         System.out.printf("%.2f\n", distanciaHasta[distanciaHasta.length-1]);
     }
 
-    private static double straigthLine(int[] point1, int[] point2) {
+    private double straigthLine(int[] point1, int[] point2) {
         return Math.sqrt(Math.pow(point1[0]-point2[0], 2)+Math.pow(point1[1]-point2[1], 2));
     }
-
 }
