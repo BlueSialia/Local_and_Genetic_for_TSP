@@ -53,7 +53,7 @@ public class Main {
                 new BitonicTour().solve();
 
             } else if (s.equals("ge") || s.equals("genetic")) {
-                new Genetic(distanceMatrix).solve(10);
+                new Genetic(distanceMatrix, 250, 0.1).solve(10);
 
             } else if (s.equals("gr") || s.equals("greedy")) {
                 new Greedy(distanceMatrix);
@@ -61,14 +61,12 @@ public class Main {
             } else {
                 System.out.println("Las opciones son:");
                 System.out.println("    * 'bf' o 'bestfirst'");
-                System.out.println("    * 'bt' o 'bitonictour'");
                 System.out.println("    * 'ge' o 'genetic'");
                 System.out.println("    * 'gr' o 'greedy'");
             }
         } catch (Exception e) {
             System.out.println("Las opciones son:");
             System.out.println("    * 'bf' o 'bestfirst'");
-            System.out.println("    * 'bt' o 'bitonictour'");
             System.out.println("    * 'ge' o 'genetic'");
             System.out.println("    * 'gr' o 'greedy'");
         }

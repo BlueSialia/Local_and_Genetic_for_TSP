@@ -7,6 +7,8 @@ import java.util.Random;
  */
 public class Genetic {
 
+    private int _limit_;
+
     // Matrix containing the costs of the TSP
     private double[][] _COSTS_;
 
@@ -65,31 +67,36 @@ public class Genetic {
     }
 
     public int[] solve() {
-        generateInitialTours();
-        int numGenerations = 1;
-        do {
-            generateNewTours();
-            numGenerations++;
-        } while (_toursCost_[0] < _fittestCost_ && numGenerations < _MAXGENERATIONS_);
+        _limit_ = 0;
+        try {
+            generateInitialTours();
+            int numGenerations = 1;
+            do {
+                generateNewTours();
+                numGenerations++;
+            } while (numGenerations < _MAXGENERATIONS_);
+        } catch (Exception e) {}
         System.out.println(Arrays.toString(_fittest_));
         System.out.println(_fittestCost_);
         return _fittest_;
     }
 
-    public int[] solve(int rep) {
+    public int[] solve(int rep) throws Exception {
         int[] newSolution,
                 solution = solve();
         for (int i = 1; i < rep; i++) {
             newSolution = solve();
+            _limit_ = 0;
             if (tourCost(solution) > tourCost(newSolution)) {
                 solution = newSolution;
             }
         }
         System.out.println("Best: "+ Arrays.toString(solution));
+        System.out.println("Best: "+ tourCost(solution));
         return solution;
     }
 
-    private void generateInitialTours() {
+    private void generateInitialTours() throws Exception {
         int[] basicTour = new int[_TOWNS_];
         for (int i = 0; i < _TOWNS_; i++) {
             basicTour[i] = i;
@@ -105,7 +112,7 @@ public class Genetic {
         _fittestCost_ = _toursCost_[0];
     }
 
-    private void generateNewTours() {
+    private void generateNewTours() throws Exception {
         int[][] newTours = new int[_POPULATION_][_TOWNS_];
         double[] newToursCost = new double[_POPULATION_];
         for (int i = 0; i < _POPULATION_/2; i++) {
@@ -152,7 +159,9 @@ public class Genetic {
         return son;
     }
 
-    private double tourCost(int[] tour) {
+    private double tourCost(int[] tour) throws Exception {
+        _limit_++;
+        if (_limit_>1000000) throw new Exception();
         double length = _COSTS_[tour[_TOWNS_ - 1]][tour[0]];
         for (int i = 0; i < _TOWNS_ - 1; i++) {
             length += _COSTS_[tour[i]][tour[i + 1]];
