@@ -53,7 +53,7 @@ public class Main {
                 new BitonicTour().solve();
 
             } else if (s.equals("ge") || s.equals("genetic")) {
-                new Genetic(distanceMatrix).solve();
+                new Genetic(distanceMatrix).solve(10);
 
             } else if (s.equals("gr") || s.equals("greedy")) {
                 new Greedy(distanceMatrix);

@@ -85,6 +85,7 @@ public class Genetic {
                 solution = newSolution;
             }
         }
+        System.out.println("Best: "+ Arrays.toString(solution));
         return solution;
     }
 
