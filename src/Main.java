@@ -1,7 +1,8 @@
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 public class Main {
 
@@ -12,8 +13,14 @@ public class Main {
         try {
             int contFila = 0;
             int contColumna = 0;
-            String fileName = "assets/dantzig42.tsp";
-            java.util.List<String> lines = Files.readAllLines(Paths.get(fileName), Charset.defaultCharset());
+            String fileName = "/dantzig42.tsp";
+            InputStream is = Paths.class.getResourceAsStream(fileName);
+            BufferedReader r = new BufferedReader(new InputStreamReader(is));
+            java.util.List<String> lines = new ArrayList<String>();
+            String line;
+            while ((line=r.readLine()) != null) {
+                lines.add(line);
+            }
             for(int l = 7; l<lines.size();l++){
                 String[] s = lines.get(l).split("\\s+");
                 for(int i = 1; i<s.length;i++){
@@ -32,7 +39,7 @@ public class Main {
                     distanceMatrix[i][j] = distanceMatrix[j][i];
                 }
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.err.println("Error reading file.");
             e.printStackTrace();
         }

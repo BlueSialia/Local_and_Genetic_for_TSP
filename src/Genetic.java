@@ -71,6 +71,8 @@ public class Genetic {
             generateNewTours();
             numGenerations++;
         } while (_toursCost_[0] < _fittestCost_ && numGenerations < _MAXGENERATIONS_);
+        System.out.println(Arrays.toString(_fittest_));
+        System.out.println(_fittestCost_);
         return _fittest_;
     }
 
