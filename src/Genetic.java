@@ -24,6 +24,9 @@ public class Genetic {
     private int[] _fittest_;
     private double _fittestCost_;
 
+    // Chances of mutating
+    private final double _MUTATE_;
+
     // Max generations
     private final int _DEFAULTMAXGENERATIONS_ = Integer.MAX_VALUE;
     private final int _MAXGENERATIONS_;
@@ -37,24 +40,27 @@ public class Genetic {
         _POPULATION_ = _TOWNS_*100;
         _tours_ = new int[_POPULATION_][_TOWNS_];
         _toursCost_ = new double[_POPULATION_];
+        _MUTATE_ = 0.5;
         _MAXGENERATIONS_ = _DEFAULTMAXGENERATIONS_;
     }
 
-    public Genetic(double[][] tsp, int population) {
+    public Genetic(double[][] tsp, int population, double mutate) {
         _COSTS_ = tsp;
         _TOWNS_ = _COSTS_.length;
         _POPULATION_ = population;
         _tours_ = new int[_POPULATION_][_TOWNS_];
         _toursCost_ = new double[_POPULATION_];
+        _MUTATE_ = mutate;
         _MAXGENERATIONS_ = _DEFAULTMAXGENERATIONS_;
     }
 
-    public Genetic(double[][] tsp, int population, int maxGenerations) {
+    public Genetic(double[][] tsp, int population, double mutate, int maxGenerations) {
         _COSTS_ = tsp;
         _TOWNS_ = _COSTS_.length;
         _POPULATION_ = population;
         _tours_ = new int[_POPULATION_][_TOWNS_];
         _toursCost_ = new double[_POPULATION_];
+        _MUTATE_ = mutate;
         _MAXGENERATIONS_ = maxGenerations;
     }
 
@@ -165,7 +171,7 @@ public class Genetic {
     }
 
     private int[] mutateArray(int[] array) {
-        double chances = 0.5/array.length;
+        double chances = _MUTATE_/array.length;
         int index;
         for (int i = array.length - 1; i > 0; i--)
         {
