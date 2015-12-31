@@ -36,5 +36,34 @@ public class Main {
             System.err.println("Error reading file.");
             e.printStackTrace();
         }
+
+        try {
+            String s = args0[0].toLowerCase();
+            if (s.equals("bf") || s.equals("bestfirst")) {
+                new BestFirst(distanceMatrix);
+
+            } else if (s.equals("bt") || s.equals("bitonictour")) {
+                new BitonicTour().solve();
+
+            } else if (s.equals("ge") || s.equals("genetic")) {
+                new Genetic(distanceMatrix).solve();
+
+            } else if (s.equals("gr") || s.equals("greedy")) {
+                new Greedy(distanceMatrix);
+
+            } else {
+                System.out.println("Las opciones son:");
+                System.out.println("    * 'bf' o 'bestfirst'");
+                System.out.println("    * 'bt' o 'bitonictour'");
+                System.out.println("    * 'ge' o 'genetic'");
+                System.out.println("    * 'gr' o 'greedy'");
+            }
+        } catch (Exception e) {
+            System.out.println("Las opciones son:");
+            System.out.println("    * 'bf' o 'bestfirst'");
+            System.out.println("    * 'bt' o 'bitonictour'");
+            System.out.println("    * 'ge' o 'genetic'");
+            System.out.println("    * 'gr' o 'greedy'");
+        }
     }
 }
