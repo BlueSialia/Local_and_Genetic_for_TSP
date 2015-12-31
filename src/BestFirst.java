@@ -1,12 +1,14 @@
 import java.util.Random;
 
-/**
- * Created by bluesialia on 31/12/15.
- */
 public class BestFirst {
 
-    private static int[][] distanceMatrix = new int[42][42];
-    private static final int NUM_CALCULATIONS = 1000000;
+    private double[][] distanceMatrix = new double[42][42];
+    private final int NUM_CALCULATIONS = 1000000;
+
+    public BestFirst(double[][] matrix) {
+        distanceMatrix = matrix;
+        localSearchBF();
+    }
 
     /**
      * Local search using Best First algorithm. This algorithm explore the neighbors and takes the first one.

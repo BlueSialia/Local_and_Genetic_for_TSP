@@ -1,12 +1,14 @@
 import java.util.Random;
 
-/**
- * Created by bluesialia on 31/12/15.
- */
 public class Greedy {
 
-    private static int[][] distanceMatrix = new int[42][42];
-    private static final int NUM_CALCULATIONS = 1000000;
+    private double[][] distanceMatrix = new double[42][42];
+    private final int NUM_CALCULATIONS = 1000000;
+
+    public Greedy(double[][] matrix) {
+        distanceMatrix = matrix;
+        localSearchG();
+    }
 
     private void localSearchG() {
         int[] bestRoute = new int[42];
@@ -50,8 +52,8 @@ public class Greedy {
             }
             System.out.println("===========================" + "Iteraction " + j + "===========================");
             System.out.println("******** ROUTE *********");
-            for (int k = 0; k < route.length; k++) {
-                System.out.print(route[k] + "\t");
+            for (int aRoute : route) {
+                System.out.print(aRoute + "\t");
             }
             System.out.println("\nCoste: " + cost);
 
@@ -62,8 +64,8 @@ public class Greedy {
         System.out.println("===============================================================");
         System.out.println("===================== Best Solution ===========================");
         System.out.println("===============================================================");
-        for (int l = 0; l < bestRoute.length; l++) {
-            System.out.print(bestRoute[l] + "\t");
+        for (int aBestRoute : bestRoute) {
+            System.out.print(aBestRoute + "\t");
         }
         System.out.println("\nCoste: " + bestCost);
         System.out.println("===============================================================");
@@ -112,7 +114,6 @@ public class Greedy {
 
     /**
      * It calculates a random route taken all the cities
-     * @param
      * @return int route
      */
     private int[] randomRoute(){
