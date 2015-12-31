@@ -12,7 +12,6 @@ public class BestFirst {
 
     /**
      * Local search using Best First algorithm. This algorithm explore the neighbors and takes the first one.
-     * @return
      */
     private void localSearchBF(){
         int[] bestRoute = new int[42];
@@ -50,8 +49,8 @@ public class BestFirst {
             }
             System.out.println("===========================" + "Iteraction " + j + "===========================");
             System.out.println("******** ROUTE *********");
-            for (int k = 0; k < route.length; k++) {
-                System.out.print(route[k] + "\t");
+            for (int aRoute : route) {
+                System.out.print(aRoute + "\t");
             }
             System.out.println("\nCoste: " + cost);
             /*System.out.println("======= BEST FIRST ROUTE ========");
@@ -68,8 +67,8 @@ public class BestFirst {
         System.out.println("===============================================================");
         System.out.println("===================== Best Solution ===========================");
         System.out.println("===============================================================");
-        for (int l = 0; l < bestRoute.length; l++) {
-            System.out.print(bestRoute[l] + "\t");
+        for (int aBestRoute : bestRoute) {
+            System.out.print(aBestRoute + "\t");
         }
         System.out.println("\nCoste: " + bestCost);
         System.out.println("===============================================================");
@@ -78,8 +77,6 @@ public class BestFirst {
 
     /**
      * Calculates the cost of the array route. It takes the distances values from the matrix distanceMatrix.
-     * @param route
-     * @param mode
      * @return int cost
      */
     private int calculateCost(int[] route, int mode) {
@@ -103,9 +100,6 @@ public class BestFirst {
 
     /**
      * Swap the position i and the position j on the array route and return the result on the array routeAux.
-     * @param route
-     * @param i
-     * @param j
      * @return int[] routeAux
      */
     private int[] swap(int[] route, int i, int j) {
@@ -118,7 +112,6 @@ public class BestFirst {
 
     /**
      * It calculates a random route taken all the cities
-     * @param
      * @return int route
      */
     private int[] randomRoute(){
@@ -148,8 +141,6 @@ public class BestFirst {
 
     /**
      * It look for the newCuty inside the route. If it founds it return TRUE, else return FALSE
-     * @param route
-     * @param newCity
      * @return boolean found
      */
     private boolean contains(int[] route, int newCity) {

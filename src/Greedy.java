@@ -74,8 +74,6 @@ public class Greedy {
 
     /**
      * Calculates the cost of the array route. It takes the distances values from the matrix distanceMatrix.
-     * @param route
-     * @param mode
      * @return int cost
      */
     private int calculateCost(int[] route, int mode) {
@@ -99,9 +97,6 @@ public class Greedy {
 
     /**
      * Swap the position i and the position j on the array route and return the result on the array routeAux.
-     * @param route
-     * @param i
-     * @param j
      * @return int[] routeAux
      */
     private int[] swap(int[] route, int i, int j) {
@@ -126,15 +121,12 @@ public class Greedy {
                 if(newCity == 0 && addZero){
                     route[i] = newCity;
                     addZero = false;
-                }
-                else if(newCity == 0 && !addZero){
+                } else if(newCity == 0 && !addZero){
                     i--;
-                }
-                else {
+                } else {
                     route[i] = newCity;
                 }
-            }
-            else{
+            } else{
                 i--;
             }
         }
@@ -143,8 +135,6 @@ public class Greedy {
 
     /**
      * It look for the newCuty inside the route. If it founds it return TRUE, else return FALSE
-     * @param route
-     * @param newCity
      * @return boolean found
      */
     private boolean contains(int[] route, int newCity) {
