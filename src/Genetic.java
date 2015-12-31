@@ -98,6 +98,8 @@ public class Genetic {
             _toursCost_[i] = tourCost(_tours_[i]);
         }
         orderTours();
+        _fittest_ = _tours_[0];
+        _fittestCost_ = _toursCost_[0];
     }
 
     private void generateNewTours() {
@@ -111,8 +113,8 @@ public class Genetic {
             newToursCost[i*2] = tourCost(newTours[i*2]);
             newToursCost[i*2 + 1] = tourCost(newTours[i*2 + 1]);
         }
-        _fittest_ = _tours_[0];
-        _fittestCost_ = _toursCost_[0];
+        _fittest_ = (_toursCost_[0] < _fittestCost_)? _tours_[0] : _fittest_;
+        _fittestCost_ = (_toursCost_[0] < _fittestCost_)? _toursCost_[0] : _fittestCost_;
         _tours_ = newTours;
         _toursCost_ = newToursCost;
         orderTours();
